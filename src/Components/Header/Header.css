@@ -1,0 +1,73 @@
+header{
+    height: var(--header-height);
+    width: 100%;
+    background-color: hsl(43, 100%, 67%);
+    position: fixed;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 1%;
+    z-index: 1;
+}
+/* LeftHeader */
+nav{
+    flex: 50%;
+}
+
+nav a{
+   color: black;
+}
+
+nav a+a::before{
+    content: "";
+    margin-left: 5%;
+}
+
+.homeLink{
+    font-size: 3rem;
+}
+
+.searchLink{
+    font-size: 2rem;
+}
+
+.activeHeaderLink{
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+/* Right Header */
+.historyBtn{
+    display: flex;
+    flex: 50%;
+    justify-content: end;
+}
+
+.historyBtn > div{
+    height: 3rem;
+    width: 3rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.leftHistoryBtn{
+    background-image: url("../../assets/icon/square-caret-left-solid.svg");
+}
+
+.rightHistoryBtn{
+    background-image: url("../../assets/icon/square-caret-right-solid.svg");
+}
+
+@media only screen and (max-width: 400px){
+    .homeLink{
+        font-size: 2.5rem;
+    }
+    .searchLink{
+        font-size: 1.5rem;
+    }
+    .historyBtn > div{
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+}

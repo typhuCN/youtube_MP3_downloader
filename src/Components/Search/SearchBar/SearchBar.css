@@ -1,0 +1,50 @@
+.searchBar{
+    height: 2.5rem;
+    display: flex;
+    border: 2px solid black;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.wayToSearch, .searchHolder{
+    border: none;
+    font-size: 1.5rem;
+    border-right: 2px solid black;
+    outline: none;
+}
+
+.wayToSearch{
+    flex: 18%;
+}
+
+.searchHolder{
+    margin-left: 2%;
+    flex: 70%;
+}
+
+.searchBtn{
+    height: 80%;
+    flex: 10%;
+    background-image: url('../../../assets/icon/magnifying-glass-solid.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .wayToSearch, .searchHolder{
+        font-size: 1rem;
+    }
+    .searchHolder{
+        flex: 50%;
+    }
+    
+    .searchBtn{
+        height: 70%;
+        flex: 8%
+    }
+
+    .wayToSearch{
+        flex: 10%;
+    }
+}

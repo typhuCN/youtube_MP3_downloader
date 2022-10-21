@@ -1,0 +1,26 @@
+:root{
+  --header-height: 100px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.main{
+  padding: calc(var(--header-height) + 2rem) 20% 0;
+  position: relative;
+}
+
+@media only screen and (max-width:1200px){
+  .main{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media only screen and (max-width:768px){
+  .main{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
