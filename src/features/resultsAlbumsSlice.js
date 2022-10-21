@@ -1,21 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { client } from '../api/playList';
+import axios from "axios";
 
 export const fetchAlbum = createAsyncThunk(
     'albumResults/fetchAlbums',
     async albumIds => {
         const allResultALbums = [];
         for(const albumId of albumIds) {
-            const response = await client({
+            const options = {
                 method: 'GET',
-                url: '/v2/get_album',
+                url: 'https://youtube-music1.p.rapidapi.com/v2/get_album',
                 params: {album_id: albumId},
                 headers: {
-                    'X-RapidAPI-Key': '2d91def2c0mshfd67601ee0f3738p10fc48jsn4cc6400224b1',
-                    'X-RapidAPI-Host': 'youtube-music1.p.rapidapi.com'
-                  }
-            });
-            allResultALbums.push(response);
+                  'X-RapidAPI-Key': '2d91def2c0mshfd67601ee0f3738p10fc48jsn4cc6400224b1',
+                  'X-RapidAPI-Host': 'youtube-music1.p.rapidapi.com'
+                }
+              };
+            try {
+                const response = await axios.request(options);
+                console.log(response.data);
+                allResultALbums.push(response.data);
+            } catch (error) {
+                console.log(error);
+            }
         }
         return allResultALbums;
     }
