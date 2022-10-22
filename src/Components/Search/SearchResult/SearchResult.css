@@ -1,0 +1,21 @@
+.searchResult{
+    height: 500px;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+    overflow-y: scroll;
+    margin-top: 2rem;
+}
+
+.result{
+    display: flex;
+    border-bottom: 1px solid black;   
+}
+
+.openSection, .endSection{
+    flex: 20%;
+}
+
+.middleSection{
+    flex: 60%;
+}

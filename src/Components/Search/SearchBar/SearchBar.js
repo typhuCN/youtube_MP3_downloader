@@ -13,11 +13,11 @@ const SearchBar = () => {
   const [artistId, setArtistId] = useState(null);
   const [albumId, setAlbumId] = useState(null);
 
-
-  const searchType = useSelector(selectSearchType);
+  
   const songs = useSelector(selectSongs);
   const artistIds = useSelector(selectArtistId);
   const albumIds = useSelector(selectAlbumId);
+  const searchType = useSelector(selectSearchType);
   
   
   useEffect(() => {
@@ -35,7 +35,7 @@ const SearchBar = () => {
     await dispatch(fetchSongs(value));  
     switch (searchType) {
       case 'songs':
-        console.log(result);
+        console.log(songs);
         break;
       case 'artists':
         dispatch(getArtistId(result));

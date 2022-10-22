@@ -15,7 +15,7 @@ export const fetchSongs = createAsyncThunk(
         };
         try {
             const response = await axios.request(options);
-            // console.log(response.data.result.songs);
+            console.log(response.data.result.songs);
             return response.data.result.songs;
         } catch (error) {
             console.log(error);
