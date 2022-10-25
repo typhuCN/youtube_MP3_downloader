@@ -1,5 +1,15 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { changeBackground } from '../../features/setHeaderBackground';
 import './Home.css';
+
+
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeBackground("none"));
+  }, [])
+  
   return (
     <div className="homePage">
         <h1>Welcome to music downloader</h1>

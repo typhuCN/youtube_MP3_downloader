@@ -1,54 +1,63 @@
 import './SearchBar.css';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSearchType, changeSearchType } from '../../../features/resultsSearchType';
-import { fetchSongs, selectSongs } from '../../../features/resultsSongsSlice';
+import { changeSongsResult } from '../../../features/resultsSongsSlice';
 import { fetchArtist } from '../../../features/resultsArtistsSlice';
-import { useEffect, useState } from 'react';
-import { getArtistId, selectArtistId } from '../../../features/getArtistIdSlice';
-import { selectAlbumId } from '../../../features/getAlbumIdSlice';
+import { fetchAlbum } from '../../../features/resultsAlbumsSlice';
 const SearchBar = () => {
   const dispatch = useDispatch();
-  // Creating a new instance to hold the result of fetching songs
-  const [result, setResult] = useState(null);
-  const [artistId, setArtistId] = useState(null);
-  const [albumId, setAlbumId] = useState(null);
-
-  
-  const songs = useSelector(selectSongs);
-  const artistIds = useSelector(selectArtistId);
-  const albumIds = useSelector(selectAlbumId);
   const searchType = useSelector(selectSearchType);
-  
-  
-  useEffect(() => {
-    setResult(songs);
-    setArtistId(artistIds);
-    setAlbumId(albumIds);
-  }, [songs, artistIds, albumIds])
-
 
   const changingSearchType = ({target}) => {
     dispatch(changeSearchType(target.value));
   }
 
   const search = async value => {
-    await dispatch(fetchSongs(value));  
-    switch (searchType) {
-      case 'songs':
-        console.log(songs);
-        break;
-      case 'artists':
-        dispatch(getArtistId(result));
-        console.log(artistId);
-        dispatch(fetchArtist(artistId));
-        break;
-      case 'albums':
-        dispatch(getArtistId(result));
-        console.log(albumId);
-        dispatch(fetchArtist(albumId));
-        break;
-      default:
-        break;
+    const options = {
+      method: 'GET',
+      url: 'https://youtube-music1.p.rapidapi.com/v2/search',
+      params: {query: value},
+      headers: {
+        'X-RapidAPI-Key': '2d91def2c0mshfd67601ee0f3738p10fc48jsn4cc6400224b1',
+        'X-RapidAPI-Host': 'youtube-music1.p.rapidapi.com'
+      }
+    };
+    try {
+      const response = await axios.request(options);
+      const responseSongs = response.data.result.songs;
+      switch (searchType) {
+        case 'songs':
+          dispatch(changeSongsResult(responseSongs));
+          break;
+        case 'artists':
+          const artistIds = [];
+          for(const song of responseSongs) {
+            for(const artist of song.artists){
+              if(artistIds.includes(artist.artist_id)){
+                  continue;
+              }
+              artistIds.push(artist.artist_id);
+            }
+          }
+          // console.log(artistIds);
+          dispatch(fetchArtist(artistIds));
+          break;
+        case 'albums':
+          const albumIds = [];
+          for(const song of responseSongs) {
+            if(!albumIds.includes(song.album.album_id)) {
+              albumIds.push(song.album.album_id)
+            } 
+          }
+          // console.log(albumIds);
+          dispatch(fetchAlbum(albumIds));
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -57,7 +66,7 @@ const SearchBar = () => {
         <select name='wayToSearch' className='wayToSearch' onChange={changingSearchType}>
             <option value="songs">Songs</option>
             <option value="artists">Artists</option>
-            <option value="album">Albums</option>
+            <option value="albums">Albums</option>
         </select>
         <input type='text' id='searchHolder' 
         className='searchHolder' 

@@ -1,5 +1,5 @@
 .searchBar{
-    height: 2.5rem;
+    min-height: 2.5rem;
     display: flex;
     border: 2px solid black;
     flex-wrap: wrap;
@@ -24,27 +24,28 @@
 }
 
 .searchBtn{
-    height: 80%;
+    cursor: pointer;
+    height: 1.5rem;
     flex: 10%;
     background-image: url('../../../assets/icon/magnifying-glass-solid.svg');
     background-repeat: no-repeat;
     background-position: center;
 }
 
+.searchBtn:hover{
+    opacity: 0.5;
+}
+
 @media only screen and (max-width: 600px) {
     .wayToSearch, .searchHolder{
-        font-size: 1rem;
-    }
-    .searchHolder{
-        flex: 50%;
-    }
-    
-    .searchBtn{
-        height: 70%;
-        flex: 8%
+        border: none;
     }
 
     .wayToSearch{
-        flex: 10%;
+        border-bottom: 1px solid black;
+    }
+
+    .searchHolder{
+        font-size: 1.2rem;
     }
 }

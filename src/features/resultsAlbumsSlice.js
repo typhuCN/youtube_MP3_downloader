@@ -17,8 +17,8 @@ export const fetchAlbum = createAsyncThunk(
               };
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
-                allResultALbums.push(response.data);
+                console.log(response.data.result);
+                allResultALbums.push(response.data.result);
             } catch (error) {
                 console.log(error);
             }
@@ -49,4 +49,4 @@ const resultsAlbumSlice = createSlice({
 })
 
 export default resultsAlbumSlice.reducer;
-export const selectAlbums = state => state.albumResults;
+export const selectAlbums = state => state.albumResults.results;

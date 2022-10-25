@@ -17,8 +17,8 @@ export const fetchArtist = createAsyncThunk(
             };
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
-                allResultArtists.push(response.data);
+                console.log(response.data.result);
+                allResultArtists.push(response.data.result);
             } catch (error) {
                 console.log(error);
             }
@@ -49,4 +49,4 @@ const resultsArtistSlice = createSlice({
 })
 
 export default resultsArtistSlice.reducer;
-export const selectArtists = state => state.artistResults;
+export const selectArtists = state => state.artistResults.results;
