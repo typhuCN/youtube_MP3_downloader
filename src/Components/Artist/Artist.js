@@ -8,6 +8,7 @@ import { download } from "../../subFunc/download";
 import Download from '../../assets/icon/download-solid.svg';
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import { selectPadding, changePadding } from "../../features/paddingRightAndLeftSlice";
 
 const Artist = () => {
     const param = useParams();
@@ -18,9 +19,8 @@ const Artist = () => {
     // const singleArtist = useSelector(selectSingleArtist);
     // const singleArtistStatus = useSelector(selectSingleArtistStatus);
     const [currentArtist, setCurrentArtist] = useState(null);
-
+    let loadingHappen = true;
     
-
     useEffect(() => {
         console.log(artists);
         let artistInArtists = false;
@@ -29,6 +29,7 @@ const Artist = () => {
                 // console.log(artist);
                 setCurrentArtist(artist);
                 artistInArtists = true;
+                loadingHappen = false;
             }
         }
         
@@ -58,6 +59,7 @@ const Artist = () => {
                     try {
                         const finalResponse = await axios.request(optionsForFetchingArtistId);
                         setCurrentArtist(finalResponse.data.result);
+                        loadingHappen = false;
                     } catch (error) {
                         console.log(error);
                     }
@@ -67,8 +69,7 @@ const Artist = () => {
             }
             InCaseNoArtist(param.artistName)
         }
-        
-        
+        dispatch(changePadding('3%'));
     }, [])
     
     useEffect(() => {
@@ -79,7 +80,15 @@ const Artist = () => {
         
     }, [currentArtist])
   
-    if(currentArtist){
+    // const padding = useSelector(selectPadding);
+    // const main = document.querySelector('.main');
+    // main.style.paddingRight = padding;
+    // main.style.paddingLeft = padding;
+
+    if(loadingHappen && !currentArtist){
+        return <Loading />
+    }
+    else if(currentArtist){
         console.log(currentArtist)
         return (
         <div className="artistPage">
@@ -88,7 +97,7 @@ const Artist = () => {
                 <p>{currentArtist.description}</p>
             </div>
             <div className="artistOther">
-            <h2>Top Hits</h2>
+            <h2>All Hits</h2>
             <div className='searchResult'>
                     {currentArtist.songs.map(song => {
                         return (
@@ -114,7 +123,7 @@ const Artist = () => {
                     })}
                 </div>
             </div>
-            <h2>Most Loved Album</h2>
+            <h2>Album</h2>
             <div className='searchResult'>
                 {currentArtist.albums.map(album => {
                     return (

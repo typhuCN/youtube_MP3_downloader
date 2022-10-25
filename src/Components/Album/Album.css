@@ -1,0 +1,32 @@
+.albumPage > h1{
+    text-align: center;
+}
+
+.albumPageArtist, .albumPage h3{
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.albumPageArtist{
+    display: flex;
+}
+
+.albumPageArtist p:hover{
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.albumPageArtist p:first-child{
+    content: "";
+    margin-left: 1rem;
+}
+
+.albumPageArtist p+p::before{
+    content: "|";
+    margin-right: 1rem;
+}
+/* Song in album */
+.onlyAlbumPage{
+    height: auto;
+    overflow-y: none;
+}

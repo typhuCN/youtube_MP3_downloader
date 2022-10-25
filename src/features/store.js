@@ -4,8 +4,7 @@ import songResults from './resultsSongsSlice';
 import artistResults from './resultsArtistsSlice';
 import albumResults from './resultsAlbumsSlice';
 import headerBackground from './setHeaderBackground';
-import singleArtist from './artist&album/artistStoringSlice';
-import singleAlbum from './artist&album/albumStoringSlice';
+import paddingRightAndLeft from './paddingRightAndLeftSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +13,6 @@ export const store = configureStore({
     artistResults,
     albumResults,
     headerBackground,
-    singleArtist,
-    singleAlbum
+    paddingRightAndLeft
   },
 });

@@ -7,6 +7,8 @@ import Search from '../Search/Search';
 import Artist from '../Artist/Artist';
 import Album from '../Album/Album';
 
+
+
 function App() {
   return (
     <div className='app'>

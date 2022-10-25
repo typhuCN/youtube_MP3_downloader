@@ -1,15 +1,23 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeBackground } from '../../features/setHeaderBackground';
 import './Home.css';
+import { selectPadding, changePadding } from '../../features/paddingRightAndLeftSlice';
 
 
 const Home = () => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(changeBackground("none"));
+    dispatch(changePadding('20%'));
   }, [])
   
+  // const padding = useSelector(selectPadding);
+  // const main = document.querySelector('.main');
+  // main.style.paddingRight = padding;
+  // main.style.paddingLeft = padding;
+
   return (
     <div className="homePage">
         <h1>Welcome to music downloader</h1>

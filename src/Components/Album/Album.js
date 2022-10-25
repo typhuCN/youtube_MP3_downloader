@@ -6,7 +6,9 @@ import { selectAlbums } from "../../features/resultsAlbumsSlice";
 import axios from "axios";
 import Download from '../../assets/icon/download-solid.svg';
 import { download } from "../../subFunc/download";
+import { selectPadding, changePadding } from "../../features/paddingRightAndLeftSlice";
 import Loading from "../Loading/Loading";
+import './Album.css';
 
 const Album = () => {
     const param = useParams();
@@ -15,6 +17,8 @@ const Album = () => {
 
     const albums = useSelector(selectAlbums);
     const [currentAlbum, setCurrentAlbum] = useState(null);
+    let loadingHappen = true;        
+
 
     useEffect(() => {
         let albumInAlbums = false;
@@ -23,6 +27,7 @@ const Album = () => {
                 // console.log(album);
                 setCurrentAlbum(album);
                 albumInAlbums = true;
+                loadingHappen = false;
             }
         }
         if(!albumInAlbums){
@@ -52,6 +57,7 @@ const Album = () => {
                     try {
                         const finalResponse = await axios.request(optionsForFetchingAlbumId);
                         setCurrentAlbum(finalResponse.data.result);
+                        loadingHappen = false;
                     } catch (error) {
                         console.log(error);
                     }
@@ -61,7 +67,7 @@ const Album = () => {
             }
             inCaseNoAlbum(param.albumName);
         }
-        
+        dispatch(changePadding('3%'));
     }, [])
     
     useEffect(() => {
@@ -72,16 +78,23 @@ const Album = () => {
         
     }, [currentAlbum])
   
-    if(currentAlbum){
+    // const padding = useSelector(selectPadding);
+    // const main = document.querySelector('.main');
+    // main.style.paddingRight = padding;
+    // main.style.paddingLeft = padding;
+
+    if(loadingHappen && !currentAlbum){
+        return <Loading />
+    }else if(currentAlbum){
         console.log(currentAlbum);
         return (
         <div className="albumPage">
             <h1>{currentAlbum.title}</h1>
-            <h2>By: {currentAlbum.artists.map(artist => {
+            <h2 className="albumPageArtist">By: {currentAlbum.artists.map(artist => {
                 return <p className="artistsInAlbum" onClick={() => navigate(`/artist/${artist.name}`, {replace: true})}>{artist.name}</p>
                 })}</h2>
             <h3>year: {currentAlbum.year} | duration: {currentAlbum.duration} min</h3>
-            <div className='searchResult'>
+            <div className='searchResult onlyAlbumPage'>
                 {currentAlbum.songs.map(song => {
                     return (
                     <div className='result'>
@@ -107,8 +120,6 @@ const Album = () => {
             </div>
         </div>
         )
-    } else{
-        <Loading />
     }
 }
 
