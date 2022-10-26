@@ -1,0 +1,19 @@
+.artistPage{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.artistDescription{
+    flex: 60%;
+    margin-right: 10%;
+}
+
+.artistOther{
+    flex: 30%;
+}
+
+.songForArtistPage{
+    height: auto;
+    overflow-y: none;
+}
+

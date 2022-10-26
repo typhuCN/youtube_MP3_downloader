@@ -51,7 +51,8 @@
 
 .endSection img{
     cursor: pointer;
-    height: 3rem;
+    max-height: 3rem;
+    min-width: 1rem;
 }
 
 .endSection img:hover{

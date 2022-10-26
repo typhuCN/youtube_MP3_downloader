@@ -2,9 +2,11 @@
     text-align: center;
 }
 
-.albumPageArtist, .albumPage h3{
+.albumPageArtist, .albumPage > h3{
     font-size: 1rem;
     opacity: 0.7;
+    font-weight: 200;
+    font-style: italic;
 }
 
 .albumPageArtist{

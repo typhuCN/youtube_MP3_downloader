@@ -4,7 +4,7 @@ import { selectArtists } from "../../features/resultsArtistsSlice";
 import { useState, useEffect } from "react";
 import { changeBackground } from "../../features/setHeaderBackground";
 import { download } from "../../subFunc/download";
-// import { selectSingleArtist, fetchSingleArtist, selectSingleArtistStatus } from "../../features/artist&album/artistStoringSlice";
+import './Artist.css'
 import Download from '../../assets/icon/download-solid.svg';
 import axios from "axios";
 import Loading from "../Loading/Loading";
@@ -21,6 +21,8 @@ const Artist = () => {
     const [currentArtist, setCurrentArtist] = useState(null);
     let loadingHappen = true;
     
+    
+
     useEffect(() => {
         console.log(artists);
         let artistInArtists = false;
@@ -80,10 +82,13 @@ const Artist = () => {
         
     }, [currentArtist])
   
-    // const padding = useSelector(selectPadding);
-    // const main = document.querySelector('.main');
-    // main.style.paddingRight = padding;
-    // main.style.paddingLeft = padding;
+
+    const padding = useSelector(selectPadding);
+    
+    useEffect(() => {
+        const root = document.querySelector(":root");
+        root.style.setProperty("--padding-right-and-left", padding);
+    }, [padding])
 
     if(loadingHappen && !currentArtist){
         return <Loading />
@@ -95,10 +100,24 @@ const Artist = () => {
             <div className="artistDescription">
                 <h1>{currentArtist.name}</h1>
                 <p>{currentArtist.description}</p>
+                
+                <h2>Related</h2>
+                <div className='searchResult songForArtistPage'>
+                {currentArtist.related.map(artist => {
+                    return (
+                    <div className='result'>
+                        <img src={artist.thumbnail} alt="thumbnail" className='openSection'/>
+                        <div className='middleSection'>
+                            <h3 className="clickable" onClick={() => navigate(`/artist/${artist.title}`, {replace: true})}>{artist.title}</h3>
+                        </div>
+                    </div>
+                    )
+                })}
+                </div>
             </div>
             <div className="artistOther">
-            <h2>All Hits</h2>
-            <div className='searchResult'>
+                <h2>All Hits</h2>
+                <div className='searchResult songForArtistPage'>
                     {currentArtist.songs.map(song => {
                         return (
                         <div className='result'>
@@ -122,19 +141,20 @@ const Artist = () => {
                         )
                     })}
                 </div>
-            </div>
-            <h2>Album</h2>
-            <div className='searchResult'>
-                {currentArtist.albums.map(album => {
-                    return (
-                    <div className='result'>
-                        <img src={album.thumbnail} alt="thumbnail" className='openSection'/>
-                        <div className='middleSection'>
-                            <h3 onClick={() => navigate(`/album/${album.title}`, {replace: true})}>{album.title}</h3>
+                <h2>Album</h2>
+                <div className='searchResult songForArtistPage'>
+                    {currentArtist.albums.map(album => {
+                        return (
+                        <div className='result'>
+                            <img src={album.thumbnail} alt="thumbnail" className='openSection'/>
+                            <div className='middleSection'>
+                                <h3 className="clickable" 
+                                onClick={() => navigate(`/album/${album.title}`, {replace: true})}>{album.title}</h3>
+                            </div>
                         </div>
-                    </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
         </div>
         )

@@ -1,5 +1,6 @@
 :root{
   --header-height: 100px;
+  --padding-right-and-left: 20%
 }
 
 a{
@@ -7,8 +8,13 @@ a{
 }
 
 .main{
-  padding: calc(var(--header-height) + 2rem) 20% 0;
+  padding: calc(var(--header-height) + 2rem) var(--padding-right-and-left) 0;
   position: relative;
+  min-height: 600px;
+}
+
+.clickable{
+  cursor: pointer;
 }
 
 @media only screen and (max-width:1200px){

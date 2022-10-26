@@ -8,6 +8,8 @@ import { selectArtists } from '../../../features/resultsArtistsSlice';
 import { selectAlbums } from '../../../features/resultsAlbumsSlice';
 import { useNavigate } from 'react-router-dom';
 import { download } from '../../../subFunc/download';
+import { selectLoadingHappen } from '../../../features/loadingHappenSlice';
+import Loading from '../../Loading/Loading';
 
 const SearchResult = () => {    
     const navigate = useNavigate();
@@ -16,7 +18,7 @@ const SearchResult = () => {
     const songs = useSelector(selectSongs);
     const artists = useSelector(selectArtists);
     const albums = useSelector(selectAlbums);
-
+    const loadingHappen = useSelector(selectLoadingHappen);
     /*
     
     Important thing to note is that the searchResult className
@@ -25,10 +27,10 @@ const SearchResult = () => {
     in Artist and Album components.
 
     */
-
     if(resultType === 'songs'){
         return (
             <div className='searchResult'>
+                {loadingHappen && <Loading />}
                 {songs.map(song => {
                     return (
                     <div className='result'>
@@ -56,6 +58,7 @@ const SearchResult = () => {
     } else if(resultType === 'artists'){
         return(
             <div className='searchResult'>
+                {loadingHappen && <Loading />}
                 {artists.map(artist => {
                     return (
                     <div className='result'>
@@ -71,6 +74,7 @@ const SearchResult = () => {
     } else if(resultType === 'albums'){ 
         return(
             <div className='searchResult'>
+                {loadingHappen && <Loading />}
                 {albums.map(album => {
                     return (
                     <div className='result'>

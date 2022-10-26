@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { changeBackground } from "../../features/setHeaderBackground";
 import { selectAlbums } from "../../features/resultsAlbumsSlice";
 import axios from "axios";
+import './Album.css';
 import Download from '../../assets/icon/download-solid.svg';
 import { download } from "../../subFunc/download";
 import { selectPadding, changePadding } from "../../features/paddingRightAndLeftSlice";
 import Loading from "../Loading/Loading";
-import './Album.css';
 
 const Album = () => {
     const param = useParams();
@@ -19,6 +19,7 @@ const Album = () => {
     const [currentAlbum, setCurrentAlbum] = useState(null);
     let loadingHappen = true;        
 
+    
 
     useEffect(() => {
         let albumInAlbums = false;
@@ -67,7 +68,7 @@ const Album = () => {
             }
             inCaseNoAlbum(param.albumName);
         }
-        dispatch(changePadding('3%'));
+        dispatch(changePadding('20%'));
     }, [])
     
     useEffect(() => {
@@ -78,10 +79,11 @@ const Album = () => {
         
     }, [currentAlbum])
   
-    // const padding = useSelector(selectPadding);
-    // const main = document.querySelector('.main');
-    // main.style.paddingRight = padding;
-    // main.style.paddingLeft = padding;
+    const padding = useSelector(selectPadding);
+    useEffect(()=>{
+        const root = document.querySelector(':root');
+        root.style.setProperty('--padding-right-and-left', padding);
+    }, [padding])
 
     if(loadingHappen && !currentAlbum){
         return <Loading />
@@ -90,7 +92,7 @@ const Album = () => {
         return (
         <div className="albumPage">
             <h1>{currentAlbum.title}</h1>
-            <h2 className="albumPageArtist">By: {currentAlbum.artists.map(artist => {
+            <h2 className="albumPageArtist clickable">By: {currentAlbum.artists.map(artist => {
                 return <p className="artistsInAlbum" onClick={() => navigate(`/artist/${artist.name}`, {replace: true})}>{artist.name}</p>
                 })}</h2>
             <h3>year: {currentAlbum.year} | duration: {currentAlbum.duration} min</h3>

@@ -1,0 +1,20 @@
+.loading{
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.loading h1{
+    font-size: 3rem;
+}
+
+.loading h2{
+    opacity: 0.7;
+    font-weight: 200;
+    padding: 1rem 0;
+}
+
+.loading img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

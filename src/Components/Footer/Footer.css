@@ -1,0 +1,32 @@
+footer{
+    background-color: hsl(43, 100%, 67%);
+    height: calc(var(--header-height) + 1rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer a{
+    color: #fff;
+    margin-left: 3px;
+}
+
+footer a:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.footerImg{
+    height: 1rem;
+    width: auto;
+    transform: translateY(20%);
+    margin: 0 3px;
+}
+
+@media only screen and (max-width: 1024px){
+ footer{
+    flex-direction: column;
+ }   
+}

@@ -7,16 +7,16 @@ import { selectPadding, changePadding } from "../../features/paddingRightAndLeft
 
 const Search = () => {
   const dispatch = useDispatch();
-  
+  const padding = useSelector(selectPadding);
+  const root = document.querySelector(':root');
+
   useEffect(() => {
     dispatch(changeBackground("none"));
     dispatch(changePadding("20%"));
-  }, [])
+    root.style.setProperty('--padding-right-and-left', padding);
+  }, [padding])
   
-  // const padding = useSelector(selectPadding);
-  // const main = document.querySelector('.main');
-  // main.style.paddingRight = padding;
-  // main.style.paddingLeft = padding;
+  
 
   return (
     <div className="searchContent">

@@ -5,15 +5,18 @@ import { selectSearchType, changeSearchType } from '../../../features/resultsSea
 import { changeSongsResult } from '../../../features/resultsSongsSlice';
 import { fetchArtist } from '../../../features/resultsArtistsSlice';
 import { fetchAlbum } from '../../../features/resultsAlbumsSlice';
+import { changeLoading } from '../../../features/loadingHappenSlice';
 const SearchBar = () => {
   const dispatch = useDispatch();
   const searchType = useSelector(selectSearchType);
-
+  
   const changingSearchType = ({target}) => {
     dispatch(changeSearchType(target.value));
   }
 
   const search = async value => {
+    dispatch(changeLoading(true));
+    console.log('loading started');
     const options = {
       method: 'GET',
       url: 'https://youtube-music1.p.rapidapi.com/v2/search',
@@ -56,8 +59,11 @@ const SearchBar = () => {
         default:
           break;
       }
+      dispatch(changeLoading(false));
+      console.log('loading ended');
     } catch (error) {
       console.log(error);
+      dispatch(changeLoading());
     }
   }
 
