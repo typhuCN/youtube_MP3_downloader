@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/youtube_MP3_downloader/static/css/main.5d8ecd07.css",
+    "main.js": "/youtube_MP3_downloader/static/js/main.6ac8db19.js",
+    "static/js/787.8c287ef3.chunk.js": "/youtube_MP3_downloader/static/js/787.8c287ef3.chunk.js",
+    "static/media/loading.gif": "/youtube_MP3_downloader/static/media/loading.cb5f5e59cc69e44aa403.gif",
+    "static/media/github.svg": "/youtube_MP3_downloader/static/media/github.171b179b9abcd796dce0204e58bb5c5f.svg",
+    "static/media/instagram.svg": "/youtube_MP3_downloader/static/media/instagram.6d5171d58481634549447b4387ccfe0c.svg",
+    "index.html": "/youtube_MP3_downloader/index.html",
+    "static/media/download-solid.svg": "/youtube_MP3_downloader/static/media/download-solid.293c0d5e07261c1ec5a1aefbeba867a9.svg",
+    "static/media/inbox-solid.svg": "/youtube_MP3_downloader/static/media/inbox-solid.8fd6c9b461dea7817cf47d0f5782a2c3.svg",
+    "static/media/square-caret-right-solid.svg": "/youtube_MP3_downloader/static/media/square-caret-right-solid.a2c98feee0a76aa835a0.svg",
+    "static/media/square-caret-left-solid.svg": "/youtube_MP3_downloader/static/media/square-caret-left-solid.e61f3264ab3c68bfd243.svg",
+    "static/media/magnifying-glass-solid.svg": "/youtube_MP3_downloader/static/media/magnifying-glass-solid.cf315284d6e0edc1c768.svg",
+    "static/media/facebook.svg": "/youtube_MP3_downloader/static/media/facebook.e6b856b56c51f12e2816f77522ce4a54.svg",
+    "main.5d8ecd07.css.map": "/youtube_MP3_downloader/static/css/main.5d8ecd07.css.map",
+    "main.6ac8db19.js.map": "/youtube_MP3_downloader/static/js/main.6ac8db19.js.map",
+    "787.8c287ef3.chunk.js.map": "/youtube_MP3_downloader/static/js/787.8c287ef3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5d8ecd07.css",
+    "static/js/main.6ac8db19.js"
+  ]
+}
