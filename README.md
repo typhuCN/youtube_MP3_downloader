@@ -6,4 +6,4 @@
 - [GitHub](https://github.com/typhuCN)
 ---
 ## Description
-This project build by React and Redux, it also includes external [API](https://rapidapi.com/mirzahadjaevaguzal/api/youtube-music1),
+This project build by React and Redux, it also includes external [API](https://rapidapi.com/mirzahadjaevaguzal/api/youtube-music1).
